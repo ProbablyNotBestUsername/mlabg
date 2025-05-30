@@ -11,8 +11,10 @@ import pymorphy3
 app = FastAPI()
 
 with open('./model_knn1.pkl', 'rb') as f:
+with open('./model_knn1.pkl', 'rb') as f:
     model = pickle.load(f)
 
+with open('./vectorizer.pkl', 'rb') as f:
 with open('./vectorizer.pkl', 'rb') as f:
     vectorizer = pickle.load(f)
 
@@ -57,6 +59,7 @@ def fun_pred_text(text):
 
 def predict_cluster(text):
     text_vectorized = vectorizer.transform([fun_pred_text(text)])
+    text_vectorized = text_vectorized[:, :model.n_features_in_]
     text_vectorized = text_vectorized[:, :model.n_features_in_]
     prediction = model.predict(text_vectorized)
     probabilities = model.predict_proba(text_vectorized)
