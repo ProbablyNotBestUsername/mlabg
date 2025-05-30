@@ -54,8 +54,9 @@ def fun_pred_text(text):
 
 def predict_cluster(text):
     text_vectorized = vectorizer.transform([fun_pred_text(text)])
+    text_vectorized = text_vectorized[:, :model.n_features_in_]
     prediction = model.predict(text_vectorized)
-    probabilities = model.predict_on_batch(text_vectorized)
+    probabilities = model.predict_proba(text_vectorized)
     rez1 = f"Класс: {prediction[0]}"
     rez2 = f"Вероятности: {probabilities[0]}"
     mapping = {
