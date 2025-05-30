@@ -10,10 +10,10 @@ import pymorphy3
 
 app = FastAPI()
 
-with open('model_knn1.pkl', 'rb') as f:
+with open('./model_knn1.pkl', 'rb') as f:
     model = pickle.load(f)
 
-with open('vectorizer.pkl', 'rb') as f:
+with open('./vectorizer.pkl', 'rb') as f:
     vectorizer = pickle.load(f)
 
 
@@ -64,6 +64,16 @@ def predict_cluster(text):
         2: 'Кластер 3',
         3: 'Кластер 4',
         4: 'Кластер 5',
+        5: 'Кластер 6',
+        6: 'Кластер 7',
+        7: 'Кластер 8',
+        8: 'Кластер 9',
+        9: 'Кластер 10',
+        10: 'Кластер 11',
+        11: 'Кластер 12',
+        12: 'Кластер 13',
+        13: 'Кластер 14',
+        14: 'Кластер 15',
     }
     selected_cluster = mapping[prediction[0]]
     return selected_cluster, rez2
