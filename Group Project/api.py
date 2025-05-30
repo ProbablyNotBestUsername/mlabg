@@ -16,6 +16,9 @@ with open('./model_knn1.pkl', 'rb') as f:
 with open('./vectorizer.pkl', 'rb') as f:
     vectorizer = pickle.load(f)
 
+# with open('./pipeline.pkl','rb') as f:
+#     pipe = pickle.load(f)
+
 
 
 def fun_punctuation_text(text):
@@ -57,27 +60,11 @@ def predict_cluster(text):
     text_vectorized = text_vectorized[:, :model.n_features_in_]
     prediction = model.predict(text_vectorized)
     probabilities = model.predict_proba(text_vectorized)
-    rez1 = f"Класс: {prediction[0]}"
+    rez1 = f"Номер кластера: {prediction[0]}"
     rez2 = f"Вероятности: {probabilities[0]}"
-    mapping = {
-        0: 'Кластер 1',
-        1: 'Кластер 2',
-        2: 'Кластер 3',
-        3: 'Кластер 4',
-        4: 'Кластер 5',
-        5: 'Кластер 6',
-        6: 'Кластер 7',
-        7: 'Кластер 8',
-        8: 'Кластер 9',
-        9: 'Кластер 10',
-        10: 'Кластер 11',
-        11: 'Кластер 12',
-        12: 'Кластер 13',
-        13: 'Кластер 14',
-        14: 'Кластер 15',
-    }
+    mapping = {0: 'Благоустройство', 1: 'Водоотведение', 2: 'Водоснабжение', 3: 'Кровля', 4: 'Нарушение порядка пользования общим имуществом', 5: 'Нарушение правил пользования общим имуществом', 6: 'Незаконная информационная и (или) рекламная конструкция', 7: 'Незаконная реализация товаров с торгового оборудования (прилавок, ящик, с земли)', 8: 'Повреждения или неисправность элементов уличной инфраструктуры', 9: 'Подвалы', 10: 'Санитарное состояние', 11: 'Содержание МКД', 12: 'Состояние рекламных или информационных конструкций', 13: 'Фасад', 14: 'Центральное отопление'}
     selected_cluster = mapping[prediction[0]]
-    return selected_cluster, rez2
+    return selected_cluster, rez1, rez2
 
 
 class Item(BaseModel):
