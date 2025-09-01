@@ -11,15 +11,10 @@ import pymorphy3
 app = FastAPI()
 
 with open('./model_knn1.pkl', 'rb') as f:
-with open('./model_knn1.pkl', 'rb') as f:
     model = pickle.load(f)
 
 with open('./vectorizer.pkl', 'rb') as f:
-with open('./vectorizer.pkl', 'rb') as f:
     vectorizer = pickle.load(f)
-
-# with open('./pipeline.pkl','rb') as f:
-#     pipe = pickle.load(f)
 
 
 
